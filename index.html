@@ -55,7 +55,7 @@
 
         .login-card {
             background-color: #181818;
-            padding: 35px;
+            padding: 30px;
             border-radius: 20px;
             width: 100%;
             max-width: 400px;
@@ -63,13 +63,13 @@
             border: 1px solid rgba(255,255,255,0.08);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
             text-align: center;
         }
         .form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
         .flex-column {
             display: flex;
@@ -153,7 +153,7 @@
     <!-- מסך התחברות / הרשמה -->
     <div id="login-screen" class="fixed inset-0 z-50 bg-[#121212] flex items-center justify-center p-4">
         <div class="login-card animate-scaleIn">
-            <div class="flex items-center justify-center gap-2.5 mb-2">
+            <div class="flex items-center justify-center gap-2.5 mb-1">
                 <div class="w-10 h-10 rounded-full bg-[#1db954] flex items-center justify-center text-black font-bold text-xl shadow-md">
                     <i class="fa-solid fa-compact-disc"></i>
                 </div>
@@ -264,19 +264,39 @@
                     </button>
                     <div class="flex items-center gap-2 bg-black/60 px-3.5 py-1.5 rounded-full border border-white/10">
                         <div class="w-6 h-6 rounded-full bg-[#1db954] text-black flex items-center justify-center font-bold text-xs" id="user-initial">U</div>
-                        <span class="text-xs font-bold text-white" id="user-display-email">User</span>
+                        <span class="text-xs font-bold text-white max-w-[120px] truncate" id="user-display-email">User</span>
                     </div>
                 </div>
             </header>
 
-            <div id="view-container" class="flex-1 px-6 pb-32"></div>
+            <div id="view-container" class="flex-1 px-4 md:px-6 pb-40"></div>
         </main>
     </div>
 
+    <!-- סרגל ניווט תחתון לטלפונים ניידים -->
+    <nav class="md:hidden fixed bottom-24 left-0 right-0 bg-[#181818]/95 backdrop-blur-md border-t border-[#282828] flex justify-around py-2.5 z-40">
+        <button onclick="switchTab('home')" class="flex flex-col items-center gap-1 text-white" id="mob-nav-home">
+            <i class="fa-solid fa-house text-base"></i>
+            <span class="text-[10px] font-bold">בית</span>
+        </button>
+        <button onclick="switchTab('browse')" class="flex flex-col items-center gap-1 text-[#b3b3b3]" id="mob-nav-browse">
+            <i class="fa-solid fa-magnifying-glass text-base"></i>
+            <span class="text-[10px] font-bold">חיפוש</span>
+        </button>
+        <button onclick="switchTab('library')" class="flex flex-col items-center gap-1 text-[#b3b3b3]" id="mob-nav-library">
+            <i class="fa-solid fa-book-open text-base"></i>
+            <span class="text-[10px] font-bold">הספרייה</span>
+        </button>
+        <button onclick="switchTab('admin')" class="hidden flex flex-col items-center gap-1 text-amber-400" id="mob-nav-admin">
+            <i class="fa-solid fa-user-shield text-base"></i>
+            <span class="text-[10px] font-bold">ניהול</span>
+        </button>
+    </nav>
+
     <!-- Bottom Player Bar -->
-    <footer id="bottom-player" class="h-24 bg-black border-t border-[#282828] px-4 md:px-6 flex items-center justify-between z-30 shrink-0">
-        <div class="flex items-center gap-3.5 w-1/4 min-w-[150px]">
-            <div id="player-art-container" onclick="openFullscreenPlayer()" class="w-14 h-14 bg-[#282828] rounded-lg overflow-hidden shrink-0 relative cursor-pointer group shadow-lg">
+    <footer id="bottom-player" class="h-24 bg-black border-t border-[#282828] px-4 md:px-6 flex items-center justify-between z-50 fixed bottom-0 left-0 right-0">
+        <div class="flex items-center gap-3.5 w-1/3 min-w-[120px]">
+            <div id="player-art-container" onclick="openFullscreenPlayer()" class="w-12 h-12 md:w-14 md:h-14 bg-[#282828] rounded-lg overflow-hidden shrink-0 relative cursor-pointer group shadow-lg">
                 <img id="player-art" src="https://placehold.co/120x120/282828/ffffff?text=🎵" alt="עטיפה" class="w-full h-full object-cover">
             </div>
             <div class="overflow-hidden cursor-pointer" onclick="openFullscreenPlayer()">
@@ -285,27 +305,27 @@
             </div>
         </div>
 
-        <div class="flex flex-col items-center max-w-xl w-2/4 px-2">
-            <div class="flex items-center gap-5 md:gap-7 mb-1.5">
+        <div class="flex flex-col items-center max-w-xl w-1/3 px-2">
+            <div class="flex items-center gap-4 md:gap-7 mb-1.5">
                 <button onclick="playPreviousSong()" class="text-[#b3b3b3] hover:text-white transition text-sm md:text-base" title="שיר קודם">
                     <i class="fa-solid fa-backward-step"></i>
                 </button>
-                <button onclick="togglePlayPause()" id="btn-play-pause" class="w-9 h-9 md:w-10 md:h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-md">
-                    <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                <button onclick="togglePlayPause()" id="btn-play-pause" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-md">
+                    <i class="fa-solid fa-play text-xs md:text-sm ml-0.5"></i>
                 </button>
                 <button onclick="playNextSong()" class="text-[#b3b3b3] hover:text-white transition text-sm md:text-base" title="שיר הבא">
                     <i class="fa-solid fa-forward-step"></i>
                 </button>
             </div>
 
-            <div class="flex items-center gap-2.5 w-full text-[11px] font-mono text-[#b3b3b3]" dir="ltr">
+            <div class="hidden sm:flex items-center gap-2.5 w-full text-[11px] font-mono text-[#b3b3b3]" dir="ltr">
                 <span id="current-time">0:00</span>
                 <input type="range" id="progress-slider" min="0" max="100" value="0" step="0.1" class="flex-1 h-1 bg-[#4d4d4d] rounded-lg appearance-none cursor-pointer slider-thumb accent-[#1db954]" oninput="seekAudio(this.value)">
                 <span id="total-duration">0:00</span>
             </div>
         </div>
 
-        <div class="hidden sm:flex items-center justify-end gap-3 w-1/4">
+        <div class="hidden sm:flex items-center justify-end gap-3 w-1/3">
             <div class="flex items-center gap-2">
                 <button onclick="toggleMute()" id="btn-volume-icon" class="text-[#b3b3b3] hover:text-white transition text-sm">
                     <i class="fa-solid fa-volume-high"></i>
@@ -392,7 +412,7 @@
                     <div class="flex flex-col gap-2">
                         <label class="cursor-pointer bg-[#3e3e3e] hover:bg-[#4e4e4e] px-4 py-3 rounded-lg text-xs font-bold flex items-center justify-center gap-2 text-white border border-white/10">
                             <i class="fa-solid fa-image text-sm text-[#1db954]"></i>
-                            <span id="cover-filename-label">העלה קובץ תמונה (מהמחשב או מהגלריה)</span>
+                            <span id="cover-filename-label">העלה קובץ תמונה</span>
                             <input type="file" id="input-album-cover-file" accept="image/*" class="hidden" onchange="handleCoverFileSelect(event)">
                         </label>
                         <div id="cover-preview-container" class="hidden mt-2 flex items-center gap-3 bg-[#121212] p-2 rounded-lg">
@@ -403,11 +423,10 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-[#b3b3b3] mb-1.5">קבצי שמע (MP3, WAV, FLAC, M4A, OGG)</label>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-[#b3b3b3] mb-1.5">קבצי שמע</label>
                     <label class="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-white/20 hover:border-[#1db954] bg-[#121212] rounded-xl p-6 transition group text-center">
                         <i class="fa-solid fa-cloud-arrow-up text-3xl text-[#1db954] mb-2 group-hover:scale-110 transition"></i>
-                        <span id="selected-files-label" class="text-sm font-bold text-white">לחץ לבחירת קבצי שמע לאלבום</span>
-                        <span class="text-xs text-[#b3b3b3] mt-1">ניתן לבחור מספר שירים בו זמנית</span>
+                        <span id="selected-files-label" class="text-sm font-bold text-white">לחץ לבחירת קבצי שמע</span>
                         <input type="file" id="input-album-songs" accept="audio/*" multiple required class="hidden" onchange="updateFilesLabel(event)">
                     </label>
                 </div>
@@ -467,7 +486,7 @@
                     alert('האימייל הזה כבר רשום במערכת! אנא התחבר.');
                     return;
                 }
-                usersDB[email] = { password: password, blockedFromCreating: false, role: 'user' };
+                usersDB[email] = { password: password, blockedFromCreating: false, role: (email === ADMIN_EMAIL ? 'owner' : 'user') };
                 localStorage.setItem('discbeat_users', JSON.stringify(usersDB));
                 alert('נרשמת בהצלחה למערכת!');
                 performLogin(email, remember);
@@ -514,7 +533,6 @@
                 request.onsuccess = () => {
                     albumsList = request.result || [];
                     
-                    // יצירת URLs זמינים עבור כל הקבצים של האלבומים
                     albumsList.forEach(album => {
                         if (album.coverBlob) {
                             album.coverUrl = URL.createObjectURL(album.coverBlob);
@@ -539,7 +557,6 @@
             let sharedDB = JSON.parse(localStorage.getItem('discbeat_shared_albums') || '{}');
             sharedAlbumsList = sharedDB[currentUserEmail] || [];
             
-            // יצירת קישורים זמינים עבור שירים באלבומים ששותפו
             sharedAlbumsList.forEach(album => {
                 if (album.songs) {
                     album.songs.forEach(song => {
@@ -614,10 +631,13 @@
             const isOwnerOrAdmin = (email === ADMIN_EMAIL) || (userObj && userObj.role === 'owner');
 
             const adminBtn = document.getElementById('nav-admin');
+            const mobAdminBtn = document.getElementById('mob-nav-admin');
             if (isOwnerOrAdmin) {
-                adminBtn.classList.remove('hidden');
+                if (adminBtn) adminBtn.classList.remove('hidden');
+                if (mobAdminBtn) mobAdminBtn.classList.remove('hidden');
             } else {
-                adminBtn.classList.add('hidden');
+                if (adminBtn) adminBtn.classList.add('hidden');
+                if (mobAdminBtn) mobAdminBtn.classList.add('hidden');
             }
             
             await initDBForUser(email);
@@ -688,10 +708,18 @@
             currentAlbumId = null;
             ['home', 'browse', 'library', 'admin'].forEach(t => {
                 const navBtn = document.getElementById(`nav-${t}`);
+                const mobBtn = document.getElementById(`mob-nav-${t}`);
+
                 if (navBtn) {
                     navBtn.className = (t === tab) ? 
                         (t === 'admin' ? "w-full flex items-center gap-4 px-3.5 py-2.5 rounded-lg text-sm font-bold text-amber-400 bg-[#282828] transition" : "w-full flex items-center gap-4 px-3.5 py-2.5 rounded-lg text-sm font-bold text-white bg-[#282828] transition") : 
                         (t === 'admin' ? "w-full flex items-center gap-4 px-3.5 py-2.5 rounded-lg text-sm font-bold text-amber-400 hover:text-amber-300 hover:bg-white/5 transition" : "w-full flex items-center gap-4 px-3.5 py-2.5 rounded-lg text-sm font-bold text-[#b3b3b3] hover:text-white hover:bg-white/5 transition");
+                }
+
+                if (mobBtn) {
+                    mobBtn.className = (t === tab) ?
+                        (t === 'admin' ? "flex flex-col items-center gap-1 text-amber-400 font-extrabold" : "flex flex-col items-center gap-1 text-white font-extrabold") :
+                        (t === 'admin' ? "flex flex-col items-center gap-1 text-amber-400/60" : "flex flex-col items-center gap-1 text-[#b3b3b3]");
                 }
             });
             renderView();
@@ -914,9 +942,9 @@
             document.getElementById('input-album-artist').value = '';
             document.getElementById('input-album-cover-file').value = '';
             document.getElementById('input-album-songs').value = '';
-            document.getElementById('cover-filename-label').innerText = 'העלה קובץ תמונה (מהמחשב או מהגלריה)';
+            document.getElementById('cover-filename-label').innerText = 'העלה קובץ תמונה';
             document.getElementById('cover-preview-container').classList.add('hidden');
-            document.getElementById('selected-files-label').innerText = 'לחץ לבחירת קבצי שמע לאלבום';
+            document.getElementById('selected-files-label').innerText = 'לחץ לבחירת קבצי שמע';
             tempCoverBlob = null;
             document.getElementById('create-album-modal').classList.remove('hidden');
         }
@@ -954,7 +982,6 @@
                 return;
             }
 
-            // שמירת השירים כ-Blob עם יצירת URL מקומי
             const songs = Array.from(songFilesInput.files).map(file => ({
                 name: file.name.replace(/\.[^/.]+$/, ""),
                 blob: file,
@@ -1007,7 +1034,6 @@
             currentSongIndex = songIndex;
             const song = album.songs[songIndex];
 
-            // בדיקת קיום קישור לשיר (URL) ויצירתו במידת הצורך מתוך Blob
             if (!song.url && song.blob) {
                 song.url = URL.createObjectURL(song.blob);
             }
